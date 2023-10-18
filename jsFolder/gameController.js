@@ -1,17 +1,22 @@
 import Model from "./gameModel.js";
 import View from "./gameView.js";
 
+
+if (module.hot) {
+  module.hot.accept();
+}
+
 //Declaring the state
 let playing = true;
 
 const controller = {
-
+guesses:0,
   processGuess(guess) {
     //parseGuess is called here
     console.log(guess);
     let location = this.parseGuess(guess);
     if (location) {
-      Model.guesses++;
+      this.guesses++;
       //hit below returns true or false from fire function in
       //Model object=> fire returns true or false
       let hit = Model.fire(location);

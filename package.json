@@ -6,7 +6,6 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html --dist-dir ./dist"
-
   },
   "dependencies": {
     "core.js": "^0.4.2",
