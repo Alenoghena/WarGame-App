@@ -1,10 +1,8 @@
+import gameModel from "./gameModel.js";
 import Model from "./gameModel.js";
 import View from "./gameView.js";
 
 
-if (module.hot) {
-  module.hot.accept();
-}
 
 //Declaring the state
 let playing = true;
@@ -13,8 +11,9 @@ const controller = {
 guesses:0,
   processGuess(guess) {
     //parseGuess is called here
-    console.log(guess);
+
     let location = this.parseGuess(guess);
+
     if (location) {
       this.guesses++;
       //hit below returns true or false from fire function in
@@ -47,6 +46,7 @@ guesses:0,
       let row = alphabet.indexOf(firstChar);
 
       let column = guess.charAt(1);
+      console.log(column, row)
 
       if (isNaN(row) || isNaN(column)) {
         alert("Oops, that isn't on the board.");
@@ -57,7 +57,9 @@ guesses:0,
         column >= Model.boardSize
       ) {
         alert("Oops, that's off the board!");
-      } else {
+      } else if(Model.hitLocation.includes(row+column)){
+        alert("Target already hit")
+      }else {
         return row + column;
       }
     }
@@ -100,8 +102,14 @@ guesses:0,
         View.displayMessage("");
         cell.classList.remove("miss");
         cell.classList.remove("hit");
+        Model.ship1Sunk = Model.ship2Sunk = Model.ship3Sunk = 0;
+        Model.ship1.locations = Model.ship2.locations =Model.ship3.locations =[];
+        Model.hitLocation=[];
+
       }
+
       Model.generateShipLocations();
+      playing = true;
     });
   },
 };

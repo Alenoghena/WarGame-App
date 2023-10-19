@@ -4,6 +4,7 @@ class Model {
   trials = 48;
   guesses = 0;
   guessNum = [];
+  hitLocation = [];
   boardSize = 7;
   slots = 9;
   numShips = 3;
@@ -17,7 +18,7 @@ class Model {
 
   fire(guess) {
     this.guessNum.push(guess);
-    let ship01 = this.ship1.locations;
+    let ship01 =  this.ship1.locations;
     let ship02 = this.ship2.locations;
     let ship03 = this.ship3.locations;
     let locations = [...ship01, ...ship02, ...ship03];
@@ -77,11 +78,11 @@ class Model {
       }
     }
     console.log("Ships array: ");
-    console.log(
-      this.ship1.locations,
-      this.ship2.locations,
-      this.ship3.locations
-    );
+    // console.log(
+    //   this.ship1.locations,
+    //   this.ship2.locations,
+    //   this.ship3.locations
+    // );
   }
 
   generateShip() {
@@ -105,7 +106,7 @@ class Model {
         newShipLocations.push(row + "" + (col + i));
       } else {
         //vertical
-        newShipLocations.push(row + i + "" + col);
+        newShipLocations.push((row + i) + "" + col);
       }
     }
     return newShipLocations;

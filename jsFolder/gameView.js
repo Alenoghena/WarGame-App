@@ -23,6 +23,7 @@ class View {
     let cell = document.getElementById(location);
     cell.setAttribute("class", "hit");
     this.displayMessage("You Hit");
+    Model.hitLocation.push(location);
   }
 
   displayMiss(location) {
@@ -30,6 +31,7 @@ class View {
     cell.setAttribute("class", "miss");
     this.displayMessage("You missed");
     console.log(cell);
+    Model.hitLocation.push(location);
   }
 }
 
